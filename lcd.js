@@ -44,25 +44,8 @@ $(document).ready(function(){
 
 $(".submit-button").click(function(){
 var string = $(".text-input").val();
-var message = [];
-console.log(string);
-string = string.toUpperCase();
-for (i=0;i<string.length;i++){
-    if(string.charAt(i)!=" "){
-console.log(string.charAt(i));
-message.push(eval(string.charAt(i)));
-}
-else {
-    message.push(characters[sp],characters[sp]);
-}
-
-
-}
-
-  message.push(exc,exc,exc);
-console.log(message);
 $(".wrapper").empty();
-$(".wrapper").lcd(message,true);
+$(".wrapper").lcd(string,true);
 
 });
 
