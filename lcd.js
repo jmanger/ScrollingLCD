@@ -1,69 +1,45 @@
 //Message array
-var D = "11111111000001100000110000010111110";
 
-var A = "01111111001000100100010010000111111";
+var characters = {
+A: 17063617599,
+B: 34245600438,
+C: 16780386466,
+D: 34228691134,
+E: 34245600457,
+F: 34243486792,
+G: 16780518542,
+H: 34108212351,
+I: 17586708673,
+J: 19197321280,
+K: 34108412225,
+L: 34093416577,
+M: 34227609727,
+N: 34158675071,
+O: 16780386494,
+P: 34243486768,
+Q: 16780452286,
+R: 34243552561,
+S: 13307634886,
+T: 17316175936,
+U: 33824981246,
+V: 33290207612,
+W: 33827029246,
+X: 26617186915,
+Y: 30081795184,
+Z: 18131085537,
+exc: 125,
+ques: 30200259704,
+" ": 0,
+".": 1,
+}
+//var message = [D,A,N,G,E,R,exc,exc,exc,B,C,F,H,I,J,ques,K,L,M,O,P,stp,stp,stp,Q,S,T,U,V,W,X,Y,Z];
 
-var N = "11111110100000001000000010001111111";
+var message = "dan g.erlol.";
 
-var G = "01111101000001100100110010010001110";
-
-var E = "11111111001001100100110010011001001";
-
-var R = "11111111001000100110010010100110001";
-
-var T = "10000001000000111111110000001000000";
-
-var B = "11111111001001100100110010010110110";
-
-var C = "01111101000001100000110000010100010";
-
-var F = "11111111001000100100010010001001000";
-
-var H = "11111110001000000100000010001111111";
-
-var I = "10000011000001111111110000011000001";
-
-var J = "10001111000001111111110000001000000";
-
-var K = "11111110001000001010001000101000001";
-
-var L = "11111110000001000000100000010000001";
-
-var M = "11111111000000111111110000001111111";
-
-var O = "01111101000001100000110000010111110";
-
-var P = "11111111001000100100010010000110000";
-
-var Q = "01111101000001100010110000110111110";
-
-var S = "01100011001001100100110010011000110";
-
-var U = "11111100000001000000100000011111110";
-
-var V = "11111000000010000000100000101111100";
-
-var W = "11111100000001111111000000011111110";
-
-var X = "11000110010100000100000101001100011";
-
-var Y = "11100000001000000111100010001110000";
-
-var Z = "10000111000101100100110100011100001";
-
-var sp = "0000000";
-
-var stp = "0000001";
-
-var exc = "1111101";
-
-var ques = "11100001000000100110110010001111000";
-
-var message = [D,A,N,G,E,R,exc,exc,exc,B,C,F,H,I,J,ques,K,L,M,O,P,stp,stp,stp,Q,S,T,U,V,W,X,Y,Z];
 
 $(document).ready(function(){
 
-    $(".wrapper").lcd(message,true);
+    $(".wrapper").lcd(message,false);
 
 
 $(".submit-button").click(function(){
@@ -77,7 +53,7 @@ console.log(string.charAt(i));
 message.push(eval(string.charAt(i)));
 }
 else {
-    message.push(sp,sp);
+    message.push(characters[sp],characters[sp]);
 }
 
 
@@ -119,29 +95,50 @@ $.fn.lcd = function(message,loop){
     init(message);
 
 function init(message){
-    message= message;
+    message= message.toUpperCase();
+    var messagearray = [];
+    for (i=0;i<message.length;i++){
+        var ch = message.charAt(i);
+       messagearray.push(ch);
+       console.log(ch);
+    };
+    console.log(messagearray);
     p = 0;
     var dem = $(".display-element");
-    for (o=0;o<message.length;o++){
+    for (o=0;o<messagearray.length;o++){
 
-        for (i=0;i<message[o].length;i++){
 
-            if (message[o].charAt(i)==1){
+            var currentCharacter = characters[messagearray[o]];
+
+            console.log(currentCharacter);
+
+            var currentCharacter = currentCharacter.toString(2);
+
+
+            console.log(currentCharacter);
+
+
+        for (i=0;i<=currentCharacter.length;i++){
+            console.log(p);
+            if (currentCharacter.charAt(i)==1){
 
                 $this = dem.eq(p).addClass("active");
                 p++;
             }
-            else if (message[o].charAt(i)==0){
+            else if (currentCharacter.charAt(i)==0){
             p++;
             }
-            if(i==(message[o].length-1)){
-
-                for (spl=0;spl<sp.length;spl++){
-
-                    p++;
 
 
-                }
+            if(i==currentCharacter.length){
+               var lt = currentCharacter.length;
+                while(lt<35){
+
+                    lt++;
+                     p++;
+
+                 }
+
             }
 
         }
