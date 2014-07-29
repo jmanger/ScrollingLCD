@@ -34,12 +34,12 @@ ques: 30200259704,
 }
 //var message = [D,A,N,G,E,R,exc,exc,exc,B,C,F,H,I,J,ques,K,L,M,O,P,stp,stp,stp,Q,S,T,U,V,W,X,Y,Z];
 
-var message = "dan g.erlol.";
+var message = "dangerlol.";
 
 
 $(document).ready(function(){
 
-    $(".wrapper").lcd(message,false);
+    $(".wrapper").lcd(message,true);
 
 
 $(".submit-button").click(function(){
@@ -114,12 +114,15 @@ function init(message){
 
             var currentCharacter = currentCharacter.toString(2);
 
+              if (currentCharacter.length==34){
+                currentCharacter = "0"+currentCharacter;
+            }
 
             console.log(currentCharacter);
 
 
-        for (i=0;i<=currentCharacter.length;i++){
-            console.log(p);
+        for (i=0;i<currentCharacter.length;i++){
+
             if (currentCharacter.charAt(i)==1){
 
                 $this = dem.eq(p).addClass("active");
@@ -128,17 +131,14 @@ function init(message){
             else if (currentCharacter.charAt(i)==0){
             p++;
             }
+            if(i==(currentCharacter.length-1)){
 
+                 for (spl=0;spl<characters[" "].length;spl++){
 
-            if(i==currentCharacter.length){
-               var lt = currentCharacter.length;
-                while(lt<35){
-
-                    lt++;
                      p++;
 
-                 }
 
+                 }
             }
 
         }
